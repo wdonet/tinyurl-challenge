@@ -1,6 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+var Firebase = require('firebase');
+var firebaseRef = new Firebase("https://[key-here].firebaseio.com/");
 
 app.use(bodyParser.json());
 
