@@ -19,10 +19,10 @@ app.get('/u/:hash', function (req, res) {
   });
 });
 
-app.get('/read', function (req, res) {
+app.get('/url', function (req, res) {
   var parts = url.parse(req.url, true);
   var query = parts.query;
-  var hash = query.ozz;
+  var hash = query.id;
   sendData(hash, function(data) {
         res.send(data.original);
       });
@@ -40,10 +40,10 @@ var sendData = function(hash, logic) {
   });
 }
 
-app.get('/tiny', function (req, res) {
+app.post('/url', function (req, res) {
 	var parts = url.parse(req.url, true);
 	var query = parts.query;
-	var oldUrl = query.ozz;
+	var oldUrl = query.link;
   var addHttp = oldUrl.match(/^http[s]{0,1}/gi) ? '' : 'http://';
 	var hash = getHashCode(oldUrl);
   //verify param already exists to return it
