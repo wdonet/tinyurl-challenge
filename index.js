@@ -44,16 +44,16 @@ app.get('/tiny', function (req, res) {
 	var parts = url.parse(req.url, true);
 	var query = parts.query;
 	var oldUrl = query.ozz;
-	
-	//verify param already exists to return it
-	// var alreadyNewUrl = exists(oldUrl);
-	// if (alreadyNewUrl) {
-		// res.send(alreadyNewUrl);
-	// }
+  var addHttp = oldUrl.match(/^http[s]{0,1}/gi) ? '' : 'http://';
 	var hash = getHashCode(oldUrl);
+  //verify param already exists to return it
+  // var alreadyNewUrl = exists(oldUrl);
+  // if (alreadyNewUrl) {
+    // res.send(alreadyNewUrl);
+  // }
 
 	//persist it
-	db.push({ 'original' : oldUrl, 'hash' : hash });
+	db.push({ 'original' : addHttp + oldUrl, 'hash' : hash });
 	res.send(baseUrl + hash);
 });
 
